@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gft.mvc.model.StatusTitulo;
 import com.gft.mvc.model.Titulo;
 import com.gft.mvc.repository.Titulos;
 
@@ -16,10 +17,17 @@ public class TituloController {
 	private Titulos titulos;
 	
 	@RequestMapping("/novo")
-	public String novo() {
-		return "CadastroTitulo";
+	public ModelAndView novo() {
+		ModelAndView m = new ModelAndView("CadastroTitulo");
+		m.addObject("todosStatus", StatusTitulo.values());
+		return m;
 	}
 
+	@RequestMapping("/ver")
+	public String ver() {
+		return "PesquisaTitulos";
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView salvar(Titulo titulo) {
 		titulos.save(titulo);
