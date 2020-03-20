@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+
+<head>
+	<meta charset="ISO-8859-1" />
+	<title>mvc</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+
+<body>
+	<nav class="navbar navbar-dark bg-dark">
+		<a class="navbar-brand" href="#"> <img
+			src="https://pt.freelogodesign.org/Content/img/logo-samples/flooop.png"
+			width="70" height="70" alt="">
+		</a>
+	</nav>
+
+	<section layout:fragment="conteudo"></section>
+
+
+	<script src="/js/jquery-3.4.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

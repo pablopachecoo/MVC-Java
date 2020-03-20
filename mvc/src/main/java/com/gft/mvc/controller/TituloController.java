@@ -1,5 +1,7 @@
 package com.gft.mvc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,15 @@ public class TituloController {
 	}
 
 	@RequestMapping("/ver")
-	public String ver() {
+	public ModelAndView ver() {
+		List<Titulo> todosTitulos = titulos.findAll();
+		ModelAndView mv = new ModelAndView("PesquisaTitulos");
+		mv.addObject("titulos", todosTitulos);
+		return mv;
+	}
+	
+	@RequestMapping
+	public String pesquisa() {
 		return "PesquisaTitulos";
 	}
 	

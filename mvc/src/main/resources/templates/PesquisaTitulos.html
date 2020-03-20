@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+
+	
 <head>
-<meta charset="ISO-8859-1"/>
-<title>Cadastro de Titulos</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+	<meta charset="ISO-8859-1" />
+	<title>mvc</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
-<meta charset="ISO-8859-1">
-<title>Pesquisa de titulos</title>
-</head>
-<body>
+
+<!-- <section layout:fragment="conteudo"> -->
 <nav class="navbar navbar-dark bg-dark">
-	 <a class="navbar-brand" href="#">
-	   <img src="https://pt.freelogodesign.org/Content/img/logo-samples/flooop.png" width="70" height="70" alt="">
-	 </a>
-</nav>
-
-
+		<a class="navbar-brand" href="#"> <img
+			src="https://pt.freelogodesign.org/Content/img/logo-samples/flooop.png"
+			width="70" height="70" alt="">
+		</a>
+	</nav>
+	
 	<div class="panel-body">
 		<table class="table table-bordered">
 			<thead>
@@ -28,16 +29,26 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>
-						nada de novo
-					</td>
+				<tr th:each="titulo : ${titulos}">
+					<td class="tect-center" th:text="${titulo.codigo}"></td>
+					<td th:text="${titulo.descricao}"></td>
+					<td class="tect-center" th:text="${titulo.dataVencimento}"></td>
+					<td class="tect-center" th:text="${titulo.valor}"></td>
+					
+					<td class="tect-center">
+						<span class="label" th:text="${titulo.status.descricao}"
+							th:classappend="${titulo.status.descricao == Pendente ? 'label-danger' : 'label-success'}" ></span>
+						</td>
+					
+					
+					<td class="tect-center"></td>
 				</tr>
 			</tbody>
-		</table> 
+		</table>
 	</div>
+	
 
-<script src="/js/jquery-3.4.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery-3.4.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
