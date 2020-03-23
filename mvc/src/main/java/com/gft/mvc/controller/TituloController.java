@@ -4,13 +4,19 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import com.gft.mvc.model.StatusTitulo;
 import com.gft.mvc.model.Titulo;
 import com.gft.mvc.repository.Titulos;
+
+import javassist.expr.NewArray;
 
 @Controller
 @RequestMapping("/titulos")
@@ -22,6 +28,7 @@ public class TituloController {
 	public ModelAndView novo() {
 		ModelAndView m = new ModelAndView("CadastroTitulo");
 		m.addObject("todosStatus", StatusTitulo.values());
+		m.addObject(new Titulo());
 		return m;
 	}
 
@@ -39,11 +46,16 @@ public class TituloController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView salvar(Titulo titulo) {
+	public String salvar(@Validated Titulo titulo, Errors error, RedirectAttributes attributes) {
+		if (error.hasErrors()) {
+			return "CadastroTitulo";
+		}
 		titulos.save(titulo);
+		attributes.addFlashAttribute("mensagem", "Titulo salvo com sucesso");
+		return "redirect:/titulos/novo";
 		// SALVAR NO BANCO
-		ModelAndView mv = new ModelAndView("CadastroTitulo");
-		mv.addObject("mensagem", "Título salvo com sucesso!");
-		return mv;
+		
+		///mv.addObject("mensagem", "Título salvo com sucesso!");
+		//return mv;
 	}
 }

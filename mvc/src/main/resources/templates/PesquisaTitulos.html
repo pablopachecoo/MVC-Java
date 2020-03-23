@@ -11,12 +11,15 @@
 
 <!-- <section layout:fragment="conteudo"> -->
 <nav class="navbar navbar-dark bg-dark">
-		<a class="navbar-brand" href="#"> <img
-			src="https://pt.freelogodesign.org/Content/img/logo-samples/flooop.png"
-			width="70" height="70" alt="">
+		<a class="navbar-brand" href="#"> <img src="https://upload.wikimedia.org/wikipedia/pt/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png"
+			width="40" height="70" alt="">
 		</a>
 	</nav>
-	
+	<div>
+	<a type="button" class="btn btn-link ">Warning
+		<span class="glyphicon glyphicon-pencil"></span>
+	</a>
+	</div>
 	<div class="panel-body">
 		<table class="table table-bordered">
 			<thead>
@@ -26,19 +29,26 @@
 					<th class="col-md-2">Data de Vencimento</th>
 					<th class="col-md-2">Valor</th>
 					<th class="col-md-2">Status</th>
+					<th class="col-md-2">Opcoes</th>
 				</tr>
 			</thead>
 			<tbody>
+			
 				<tr th:each="titulo : ${titulos}">
-					<td class="tect-center" th:text="${titulo.codigo}"></td>
+					<td class="text-center" th:text="${titulo.codigo}"></td>
 					<td th:text="${titulo.descricao}"></td>
-					<td class="tect-center" th:text="${titulo.dataVencimento}"></td>
-					<td class="tect-center" th:text="${titulo.valor}"></td>
+					<td class="text-center" th:text="${titulo.dataVencimento}"></td>
+					<td class="text-center" th:text="${titulo.valor}"></td>
 					
 					<td class="tect-center">
 						<span class="label" th:text="${titulo.status.descricao}"
 							th:classappend="${titulo.status.descricao == Pendente ? 'label-danger' : 'label-success'}" ></span>
 						</td>
+					<td class="text-center">								
+							<a type="button" class="btn btn-link">
+							<span class="glyphicon glyphicon-pencil"></span>
+							</a>	
+					</td>
 					
 					
 					<td class="tect-center"></td>

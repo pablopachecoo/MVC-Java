@@ -16,7 +16,6 @@ public class MvcApplication {
 	}
 
 	@Bean
-	
 	public LocaleResolver localeResolver() {
 		return new FixedLocaleResolver(new Locale("pt", "BR"));
 	}
