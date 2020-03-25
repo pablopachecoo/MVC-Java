@@ -1,64 +1,83 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
 
-	
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+
+
 <head>
-	<meta charset="ISO-8859-1" />
-	<title>mvc</title>
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<meta charset="ISO-8859-1" />
+<title>mvc</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.standalone.min.css" />
 </head>
 
 <!-- <section layout:fragment="conteudo"> -->
 <nav class="navbar navbar-dark bg-dark">
-		<a class="navbar-brand" href="#"> <img src="https://upload.wikimedia.org/wikipedia/pt/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png"
-			width="40" height="70" alt="">
-		</a>
-	</nav>
-	<div>
-	<a type="button" class="btn btn-link ">Warning
-		<span class="glyphicon glyphicon-pencil"></span>
+	<a class="navbar-brand" href="#"> <img
+		src="https://upload.wikimedia.org/wikipedia/pt/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png"
+		width="40" height="70" alt="">
 	</a>
-	</div>
-	<div class="panel-body">
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th class="text-center col-md-1">#</th>
-					<th class="col-md-2">Descricao</th>
-					<th class="col-md-2">Data de Vencimento</th>
-					<th class="col-md-2">Valor</th>
-					<th class="col-md-2">Status</th>
-					<th class="col-md-2">Opcoes</th>
-				</tr>
-			</thead>
-			<tbody>
-			
-				<tr th:each="titulo : ${titulos}">
-					<td class="text-center" th:text="${titulo.codigo}"></td>
-					<td th:text="${titulo.descricao}"></td>
-					<td class="text-center" th:text="${titulo.dataVencimento}"></td>
-					<td class="text-center" th:text="${titulo.valor}"></td>
-					
-					<td class="tect-center">
-						<span class="label" th:text="${titulo.status.descricao}"
-							th:classappend="${titulo.status.descricao == Pendente ? 'label-danger' : 'label-success'}" ></span>
-						</td>
-					<td class="text-center">								
-							<a type="button" class="btn btn-link">
-							<span class="glyphicon glyphicon-pencil"></span>
-							</a>	
-					</td>
-					
-					
-					<td class="tect-center"></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	
+</nav>
+<div>
+	<a type="button" class="btn btn-link" href="/titulos/novo"> <i
+		class="fas fa-edit">NOVO</i>
+	</a>
+</div>
+<div class="panel-body">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th class="text-center col-md-1">#</th>
+				<th class="col-md-2">Descricao</th>
+				<th class="col-md-2">Data de Vencimento</th>
+				<th class="col-md-2">Valor</th>
+				<th class="col-md-2">Status</th>
+				<th class="col-md-2">Opcoes</th>
+			</tr>
+		</thead>
+		<tbody>
 
-	<script src="/js/jquery-3.4.1.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
+			<tr th:each="titulo : ${titulos}">
+				<td class="text-center" th:text="${titulo.codigo}"></td>
+				<td th:text="${titulo.descricao}"></td>
+				<td class="text-center" th:text="${titulo.dataVencimento}"></td>
+				<td class="text-center" th:text="${titulo.valor}"></td>
+
+				<td class="tect-center"><span
+					th:text="${titulo.status.descricao}"
+					th:classappend="${titulo.status.descricao == 'Pendente' ? 'badge badge-danger' : 'badge badge-success'}"></span>
+				</td>
+				<td class="text-center"><a type="button" class="btn btn-link"
+					th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"> <i
+						class="fas fa-edit"></i>
+				</a> <a type="button" class="btn btn-link"
+					th:href="@{/titulos/deletar/{codigo}(codigo=${titulo.codigo})}">
+						<i class="far fa-trash-alt"></i>
+				</a></td>
+
+
+				<td class="tect-center"></td>
+			</tr>
+			<tr>
+
+			</tr>
+
+		</tbody>
+	</table>
+</div>
+
+<div layout:include="DialogoConfirmacaoExclusao"></div>
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

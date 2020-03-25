@@ -6,4 +6,6 @@ import com.gft.mvc.model.Titulo;
 
 public interface Titulos extends JpaRepository<Titulo, Long>{
 
+
+
 }
