@@ -52,7 +52,7 @@
 		<div class="form-group col-md-3"
 			th:classappend="${#fields.hasErrors('valor')} ? invalid">
 			<label for="valor">Valor</label> <input type="text"
-				class="form-control" placeholder="Valor" id="valor"
+				class="form-control js-currency"  placeholder="Valor" id="valor"
 				th:field="*{valor}">
 		</div>
 
@@ -60,7 +60,7 @@
 		<div class="form-group col-md-3">
 			<label for="email">Status</label>
 				<select class="form-control"th:field="*{status}">
-					<option th:each="status : ${todosStatus}" th:value="${status}" th:text="${status.descricao}" ></option>
+					<option th:each="status : ${StatusTitulo}" th:value="${status}" th:text="${status.descricao}" ></option>
 				</select>
 		</div>
 		<div class="form-group">
@@ -69,6 +69,8 @@
 	</form>
 		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/cobranca.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
 	<script src="/js/bootstrap-datepicker.min.js"></script>
 	<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
 </body>
