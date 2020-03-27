@@ -49,17 +49,30 @@
 				<td class="text-center" th:text="${titulo.dataVencimento}"></td>
 				<td class="text-center" th:text="${titulo.valor}"></td>
 
-				<td class="tect-center"><span
-					th:text="${titulo.status.descricao}"
+				<td class="tect-center" th:attr="data-role=${titulo.codigo}">
+					<span th:text="${titulo.status.descricao}"
 					th:classappend="${titulo.status.descricao == 'Pendente' ? 'badge badge-danger' : 'badge badge-success'}"></span>
 				</td>
-				<td class="text-center"><a type="button" class="btn btn-link"
-					th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"> <i
-						class="fas fa-edit"></i>
-				</a> <a type="button" class="btn btn-link"
-					th:href="@{/titulos/deletar/{codigo}(codigo=${titulo.codigo})}">
-						<i class="far fa-trash-alt"></i>
-				</a></td>
+				
+				<td class="text-center">
+				<a type="button" class="btn btn-link"
+				th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}">
+				<i class="fas fa-edit"></i>
+				</a>
+				
+				<a type="button" class="btn btn-link" th:attr="data-codigo=${titulo.codigo}"
+				th:href="@{/titulos/deletar/{codigo}(codigo=${titulo.codigo})}">
+				<i class="far fa-trash-alt"></i>
+				</a>
+				<!-- th:attr="data-codigo=${titulo.codigo}- -->
+				
+				<a type="button" class="btn btn-link js-atualizar-status" th:attr="data-codigo=${titulo.codigo}"
+				th:if="${titulo.status.descricao == 'Pendente'}"
+				th:href="@{/titulos/{codigo}/receber(codigo = ${titulo.codigo})}">
+				<i class="fas fa-check"></i>
+				</a>
+				
+				</td>
 
 
 				<td class="tect-center"></td>
@@ -75,9 +88,11 @@
 <div layout:include="DialogoConfirmacaoExclusao"></div>
 
 
-<script src="/js/jquery-3.4.1.min.js"></script>
-<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
-<script src="/js/bootstrap-datepicker.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/cobranca.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+	<script src="/js/bootstrap-datepicker.min.js"></script>
+	<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
 </body>
 </html>
